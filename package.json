@@ -1,0 +1,20 @@
+{
+  "name": "mirrorconfig",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://ProxyBlack61@github.com/ProxyBlack61/MirrorConfig.git"
+  },
+  "author": "Kilian Stoeckler",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/ProxyBlack61/MirrorConfig/issues"
+  },
+  "homepage": "https://github.com/ProxyBlack61/MirrorConfig#readme",
+  "dependencies": {
+    "async": "^3.2.4",
+    "underscore": "^1.13.6"
+  }
+}
