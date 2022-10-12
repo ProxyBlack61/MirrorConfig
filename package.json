@@ -2,7 +2,7 @@
   "name": "mirrorconfig",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://ProxyBlack61@github.com/ProxyBlack61/MirrorConfig.git"
