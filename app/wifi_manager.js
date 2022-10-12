@@ -221,8 +221,8 @@ module.exports = function() {
 
                     function restart_hostapd_service(next_step) {
                         exec("sudo systemctl restart hostapd", function(error, stdout, stderr) {
-                            //console.log(stdout);
                             if (!error) console.log("... hostapd restarted!");
+                            else console.log("... hostapd failed! - " + stdout);
                             next_step();
                         });
                     },
