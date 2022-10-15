@@ -6,6 +6,7 @@ const Calendar = () => import("./views/Calendar.vue");
 const Clock = () => import("./views/Clock.vue");
 const HelloWord = () => import("./views/HelloWorld.vue");
 const NewsFeed = () => import("./views/NewsFeed.vue");
+const Compliments = () => import("./views/Compliments.vue");
 
 export default createRouter({
   routes: [
@@ -38,6 +39,11 @@ export default createRouter({
       path: "/newsfeed",
       name: "NewsFeed",
       component: NewsFeed,
+    },
+    {
+      path: "/compliments",
+      name: "Compliments",
+      component: Compliments,
     },
   ],
   history: createWebHistory(),

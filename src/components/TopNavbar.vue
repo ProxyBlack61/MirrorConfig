@@ -37,35 +37,51 @@
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/weather">
-                <i class="bi bi-cloud-drizzle"></i>&nbsp;Weather
+                <i class="bi bi-cloud-drizzle"></i>&nbsp;{{ $t("weatherMsg") }}
               </router-link>
             </li>
             <li class="nav-item">
               <router-link to="/calendar" class="nav-link">
-                <i class="bi bi-calendar"></i>&nbsp;Calendar
+                <i class="bi bi-calendar"></i>&nbsp;{{ $t("calendarMsg") }}
               </router-link>
             </li>
             <li class="nav-item">
               <router-link to="/compliments" class="nav-link">
-                <i class="bi bi-emoji-smile"></i>&nbsp;Compliments
+                <i class="bi bi-emoji-smile"></i>&nbsp;{{
+                  $t("complimentsMsg")
+                }}
               </router-link>
             </li>
             <li class="nav-item">
               <router-link to="/clock" class="nav-link">
-                <i class="bi bi-clock"></i>&nbsp;Clock
+                <i class="bi bi-clock"></i>&nbsp;{{ $t("clockMsg") }}
               </router-link>
             </li>
             <li class="nav-item">
               <router-link to="/newsfeed" class="nav-link">
-                <i class="bi bi-newspaper"></i>&nbsp;Newsfeed
+                <i class="bi bi-newspaper"></i>&nbsp;{{ $t("newsFeedMsg") }}
               </router-link>
             </li>
             <li class="nav-item">
               <router-link to="/helloworld" class="nav-link">
-                <i class="bi bi-chat"></i>&nbsp;Hello World
+                <i class="bi bi-chat"></i>&nbsp;{{ $t("helloWorldMsg") }}
               </router-link>
             </li>
           </ul>
+          <div class="">
+            <select
+              class="form-select bg-dark text-white"
+              v-model="$i18n.locale"
+            >
+              <option
+                v-for="locale in $i18n.availableLocales"
+                :key="`locale-${locale}`"
+                :value="locale"
+              >
+                {{ locale }}
+              </option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
@@ -73,10 +89,23 @@
 </template>
 
 <script>
-import "bootstrap/dist/css/bootstrap.min.css";
+import i18n from "@/plugins/i18n";
 
 export default {
   name: "TopNavbar",
+  data() {
+    return {
+      languages: [
+        { flag: "us", language: "en", title: "English" },
+        { flag: "de", language: "de", title: "Deutsch" },
+      ],
+    };
+  },
+  methods: {
+    changeLocale(language) {
+      i18n.locale = language;
+    },
+  },
 };
 </script>
 
