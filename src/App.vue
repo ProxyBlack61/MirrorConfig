@@ -1,21 +1,20 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/weather">Weather</router-link>
-    </nav>
-
-    <router-view></router-view>
+  <div>
+    <top-navbar/>
   </div>
+  <router-view/>
 </template>
 
 <script>
 import Home from "./views/Home.vue";
 import Weather from "./views/Weather.vue";
+import topNavbar from "./components/TopNavbar.vue";
+
 export default {
   components: {
     Home,
     Weather,
+    topNavbar,
   },
 };
 </script>
