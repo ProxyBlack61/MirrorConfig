@@ -1,13 +1,12 @@
 <template>
-
+  <h1>Calendar</h1>
 </template>
 
 <script>
 export default {
-  name: "Calendar"
-}
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "Calendar",
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

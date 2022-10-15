@@ -1,13 +1,12 @@
 <template>
-
+  <h1>Compliments</h1>
 </template>
 
 <script>
 export default {
-  name: "Compliments"
-}
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "Compliments",
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
