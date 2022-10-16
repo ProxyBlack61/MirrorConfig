@@ -8,6 +8,9 @@ const messages = {
     newsFeedMsg: "News Feed",
     complimentsMsg: "Compliments",
     homeMsg: "Home",
+    chooseLanguageMsg: "Choose Language:",
+    clockHeader: "Clock Settings",
+    clockTimeFormat: "24 Hour Time Format active"
   },
   Deutsch: {
     weatherMsg: "Wetter",
@@ -17,6 +20,9 @@ const messages = {
     newsFeedMsg: "Nachrichten",
     complimentsMsg: "Komplimente",
     homeMsg: "Home",
+    chooseLanguageMsg: "Sprache wählen:",
+    clockHeader: "Uhr Einstellungen",
+    clockTimeFormat: "24 Stunden Zeitformat aktiv"
   },
 };
 

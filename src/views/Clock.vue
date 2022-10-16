@@ -1,5 +1,15 @@
 <template>
-  <h1>Clock</h1>
+<div class="h-100 d-flex flex-row">
+  <h1 class="h1 ">{{$t("clockHeader") }}</h1>
+
+  <div class="container-fluid">
+    <a>{{$t("clockTimeFormat")}}</a>
+  </div>
+</div>
+
+
+
+
 </template>
 
 <script>

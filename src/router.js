@@ -47,4 +47,5 @@ export default createRouter({
     },
   ],
   history: createWebHistory(),
+  linkActiveClass: "active",
 });

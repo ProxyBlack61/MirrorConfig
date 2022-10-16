@@ -68,7 +68,11 @@
               </router-link>
             </li>
           </ul>
-          <div class="">
+          <div
+            class="position-absolute bottom-0 start-50 translate-middle-x container-fluid"
+            style="padding-bottom: 15px"
+          >
+            <label class="form-text">{{ $t("chooseLanguageMsg") }}</label>
             <select
               class="form-select bg-dark text-white"
               v-model="$i18n.locale"
@@ -89,23 +93,8 @@
 </template>
 
 <script>
-import i18n from "@/plugins/i18n";
-
 export default {
   name: "TopNavbar",
-  data() {
-    return {
-      languages: [
-        { flag: "us", language: "en", title: "English" },
-        { flag: "de", language: "de", title: "Deutsch" },
-      ],
-    };
-  },
-  methods: {
-    changeLocale(language) {
-      i18n.locale = language;
-    },
-  },
 };
 </script>
 
