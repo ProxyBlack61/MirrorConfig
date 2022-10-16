@@ -10,7 +10,8 @@ const messages = {
     homeMsg: "Home",
     chooseLanguageMsg: "Choose Language:",
     clockHeader: "Clock Settings",
-    clockTimeFormat: "24 Hour Time Format active"
+    clockTimeFormat: "24 Hour Time Format active",
+    clockShowSecond: "Display Seconds on the Clock",
   },
   Deutsch: {
     weatherMsg: "Wetter",
@@ -22,7 +23,8 @@ const messages = {
     homeMsg: "Home",
     chooseLanguageMsg: "Sprache wählen:",
     clockHeader: "Uhr Einstellungen",
-    clockTimeFormat: "24 Stunden Zeitformat aktiv"
+    clockTimeFormat: "24 Stunden Zeitformat aktiv",
+    clockShowSecond: "Sekunden auf der Uhr anzeigen",
   },
 };
 
