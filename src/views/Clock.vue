@@ -1,54 +1,110 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col">
-        <h1 class="h1 text-center">{{ $t("clockHeader") }}</h1>
-      </div>
+    <h1 class="display-4 text-center">{{ $t("clockHeader") }}</h1>
+    <hr style="width: 40%" class="text-center mx-auto" />
+    <strong class="mb-0">Security</strong>
+    <p>Control security alert you will be notified.</p>
+    <div class="list-group mb-5 shadow">
+      <basic-toggle
+        text-string="clockShowPeriod"
+        v-model="clockSettings.showPeriod"
+      />
+      <basic-toggle
+        text-string="clockShowPeriodUpper"
+        v-model="clockSettings.showPeriodUpper"
+      />
+      <basic-toggle
+        textString="clockTimeFormat"
+        v-model="clockSettings.timeFormat"
+      />
+      <basic-toggle
+        text-string="clockShowSecond"
+        v-model="clockSettings.displaySeconds"
+      />
+      <basic-toggle
+        text-string="clockShowWeek"
+        v-model="clockSettings.showWeek"
+      />
+      <basic-toggle
+        text-string="clockModernLook"
+        v-model="clockSettings.clockBold"
+      />
+      <basic-toggle
+        text-string="clockShowSunTimes"
+        v-model="clockSettings.showSunTimes"
+      />
+      <basic-toggle
+        text-string="clockShowDate"
+        v-model="clockSettings.showDate"
+      />
+      <basic-toggle
+        text-string="clockShowMoonTimes"
+        v-model="clockSettings.showMoonTimes"
+      />
     </div>
-    <div class="row">
-      <div class="col float-end">
-        <p class="text-end">{{ $t("clockTimeFormat") }}</p>
-      </div>
-      <div class="col d-flex justify-content-center">
-        <div class="form-check form-switch justify-content-center">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="clockTimeFormat"
-            checked
-          />
-          <label class="form-check-label" for="clockTimeFormat  "></label>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col float-end">
-        <p class="text-end">{{ $t("clockShowSecond") }}</p>
-      </div>
-      <div class="col d-flex justify-content-center">
-        <div class="form-check form-switch justify-content-center">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="clockShowSeconds"
-            checked
-          />
-          <label class="form-check-label" for="clockShowSeconds"></label>
-        </div>
-      </div>
-    </div>
-    <basic-toggle idString="clockShowSecond"></basic-toggle>
   </div>
+  <input
+    class="btn btn-primary"
+    type="submit"
+    value="Submit"
+    @click="saveClockSettings"
+  />
+  <hr />
+  {{ clockSettings }}
 </template>
 
 <script>
+import BasicToggle from "../components/BasicToggle.vue";
 export default {
-  import BasicToggle from "./BasicToggle.vue";
   components: {
     BasicToggle,
   },
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Clock",
+
+  data() {
+    return {
+      clockSettings: {
+        showPeriod: true,
+        showPeriodUpper: true,
+        timeFormat: true,
+        displaySeconds: true,
+        showWeek: true,
+        clockBold: true,
+        showSunTimes: true,
+        showDate: true,
+        showMoonTimes: true,
+      },
+    };
+  },
+  created() {
+    fetch("http://127.0.0.1:3000/clockSettings", {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data === undefined) {
+          console.log("test");
+          this.clockSettings = data;
+        }
+      });
+  },
+  methods: {
+    saveClockSettings() {
+      fetch("http://127.0.0.1:3000/clockSettings", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.clockSettings),
+      });
+    },
+  },
 };
 </script>
 

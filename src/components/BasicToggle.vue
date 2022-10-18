@@ -1,17 +1,22 @@
 <template>
-  <div class="row">
-    <div class="col float-end">
-      <p class="text-end">{{ $t("{{idString}}") }}</p>
-    </div>
-    <div class="col d-flex justify-content-center">
-      <div class="form-check form-switch justify-content-center">
-        <input
-            class="form-check-input"
+  <div class="list-group-item">
+    <div class="row align-items-center">
+      <div class="col">
+        <strong class="mb-2">{{ $t(textString) }}</strong>
+        <p class="text-muted mb-0">
+          {{ $t(textString + "Detail") }}
+        </p>
+      </div>
+      <div class="col-auto">
+        <div class="custom-control form-switch">
+          <input
             type="checkbox"
-            id="{{idString}}"
-            checked
-        />
-        <label class="form-check-label" for="{{idString}}"></label>
+            class="form-check-input"
+            v-bind:id="textString"
+            v-model="value"
+          />
+          <span class="form-check-label"></span>
+        </div>
       </div>
     </div>
   </div>
@@ -20,12 +25,19 @@
 <script>
 export default {
   name: "BasicToggle",
-  props: {
-    idString: String
-  }
-}
+  props: ["textString", "modelValue"],
+  emits: ["update:modelValue"],
+  computed: {
+    value: {
+      get() {
+        return this.modelValue;
+      },
+      set(value) {
+        this.$emit("update:modelValue", value);
+      },
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
