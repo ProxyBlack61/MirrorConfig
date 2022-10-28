@@ -41,23 +41,30 @@
         text-string="clockShowMoonTimes"
         v-model="clockSettings.showMoonTimes"
       />
+      <basic-select
+        text-string="clockDisplayType"
+        v-model="clockSettings.displayType"
+      />
     </div>
+    <input
+      class="btn btn-primary"
+      type="submit"
+      value="Submit"
+      @click="saveClockSettings"
+    />
+    <hr />
+    {{ clockSettings }}
   </div>
-  <input
-    class="btn btn-primary"
-    type="submit"
-    value="Submit"
-    @click="saveClockSettings"
-  />
-  <hr />
-  {{ clockSettings }}
 </template>
 
 <script>
 import BasicToggle from "../components/BasicToggle.vue";
+import BasicSelect from "../components/BasicSelect.vue";
+
 export default {
   components: {
     BasicToggle,
+    BasicSelect,
   },
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Clock",
@@ -74,6 +81,7 @@ export default {
         showSunTimes: true,
         showDate: true,
         showMoonTimes: true,
+        displayType: "digital",
       },
     };
   },
@@ -87,9 +95,8 @@ export default {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data === undefined) {
-          console.log("test");
-          this.clockSettings = data;
+        if (Object.keys(data).length !== 0) {
+          this.clockSettings = data.clockSettings;
         }
       });
   },

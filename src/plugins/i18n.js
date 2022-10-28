@@ -34,6 +34,8 @@ const messages = {
     clockShowMoonTimes: "Enable Moon Times",
     clockShowMoonTimesDetail:
       "If checked, the moonrise and moonset times will be displayed on the clock",
+    clockDisplayType: "Display Type",
+    clockDisplayTypeDetail: "Select the display type for the clock",
   },
   Deutsch: {
     weatherMsg: "Wetter",
@@ -69,6 +71,8 @@ const messages = {
     clockShowMoonTimes: "Mondzeiten anzeigen",
     clockShowMoonTimesDetail:
       "Wenn aktiviert, werden die Mond auf- und untergangszeiten auf der Uhr angezeigt",
+    clockDisplayType: "Anzeigetyp",
+    clockDisplayTypeDetail: "Wählen Sie den Anzeigetyp für die Uhr",
   },
 };
 
