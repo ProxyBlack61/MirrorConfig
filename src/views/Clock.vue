@@ -44,8 +44,20 @@
       <basic-select
         text-string="clockDisplayType"
         v-model="clockSettings.displayType"
+        :options="displayTypeOptions"
+      />
+      <basic-select
+        text-string="clockAnalogPlacement"
+        v-model="clockSettings.analogPlacement"
+        :options="analogPlacementOptions"
+        :disabled="clockSettings.displayType !== 'both'"
+      />
+      <basic-color-picker
+        text-string="clockAnalogHandsColor"
+        v-model="clockSettings.secondsColor"
       />
     </div>
+
     <input
       class="btn btn-primary"
       type="submit"
@@ -60,11 +72,13 @@
 <script>
 import BasicToggle from "../components/BasicToggle.vue";
 import BasicSelect from "../components/BasicSelect.vue";
+import BasicColorPicker from "../components/BasicColorPicker.vue";
 
 export default {
   components: {
     BasicToggle,
     BasicSelect,
+    BasicColorPicker,
   },
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Clock",
@@ -82,7 +96,20 @@ export default {
         showDate: true,
         showMoonTimes: true,
         displayType: "digital",
+        analogPlacement: "top",
+        secondsColor: "#ffffff",
       },
+      displayTypeOptions: [
+        { id: 1, value: "digital", language: "clockDisplayTypeDigital" },
+        { id: 2, value: "analog", language: "clockDisplayTypeAnalog" },
+        { id: 3, value: "both", language: "clockDisplayTypeBoth" },
+      ],
+      analogPlacementOptions: [
+        { id: 1, value: "top", language: "clockAnalogPlacementTop" },
+        { id: 2, value: "bottom", language: "clockAnalogPlacementBottom" },
+        { id: 3, value: "left", language: "clockAnalogPlacementLeft" },
+        { id: 4, value: "right", language: "clockAnalogPlacementRight" },
+      ],
     };
   },
   created() {

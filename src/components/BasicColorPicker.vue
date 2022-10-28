@@ -8,16 +8,14 @@
         </p>
       </div>
       <div class="col-auto">
-        <div class="custom-control form-switch">
-          <input
-            type="checkbox"
-            class="form-check-input"
-            v-bind:id="textString"
-            v-model="value"
-            :disabled="disabled"
-          />
-          <span class="form-check-label"></span>
-        </div>
+        <input
+          type="color"
+          class="form-control form-control-color"
+          title="Choose your color "
+          v-bind:id="textString"
+          v-model="value"
+          :disabled="disabled"
+        />
       </div>
     </div>
   </div>
@@ -25,7 +23,7 @@
 
 <script>
 export default {
-  name: "BasicToggle",
+  name: "BasicColorPicker",
   props: {
     textString: String,
     modelValue: String,

@@ -1,4 +1,4 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
   <div class="list-group-item">
     <div class="row align-items-center">
       <div class="col">
@@ -13,10 +13,15 @@
           v-bind:id="textString"
           v-model="value"
           class="form-select"
+          :disabled="disabled"
         >
-          <option selected value="digital">Digital</option>
-          <option value="analog">Analog</option>
-          <option value="both">Both</option>
+          <option
+            v-for="option in options"
+            :key="option.id"
+            :value="option.value"
+          >
+            {{ $t(option.language) }}
+          </option>
         </select>
       </div>
     </div>
@@ -26,7 +31,15 @@
 <script>
 export default {
   name: "BasicSelect",
-  props: ["textString", "modelValue"],
+  props: {
+    textString: String,
+    modelValue: String,
+    disabled: Boolean,
+    options: {
+      type: Array,
+      required: false,
+    },
+  },
   emits: ["update:modelValue"],
   computed: {
     value: {
