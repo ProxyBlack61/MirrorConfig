@@ -28,7 +28,7 @@ export default {
   name: "BasicToggle",
   props: {
     textString: String,
-    modelValue: String,
+    modelValue: Boolean,
     disabled: Boolean,
   },
   emits: ["update:modelValue"],
