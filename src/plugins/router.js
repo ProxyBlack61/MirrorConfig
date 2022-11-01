@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-const Home = () => import("./views/Home.vue");
-const Weather = () => import("./views/Weather.vue");
-const Calendar = () => import("./views/Calendar.vue");
-const Clock = () => import("./views/Clock.vue");
-const HelloWord = () => import("./views/HelloWorld.vue");
-const NewsFeed = () => import("./views/NewsFeed.vue");
-const Compliments = () => import("./views/Compliments.vue");
+const Home = () => import("../views/Home.vue");
+const Weather = () => import("../views/Weather.vue");
+const Calendar = () => import("../views/Calendar.vue");
+const Clock = () => import("../views/Clock.vue");
+const HelloWord = () => import("../views/HelloWorld.vue");
+const NewsFeed = () => import("../views/NewsFeed.vue");
+const Compliments = () => import("../views/Compliments.vue");
 
 export default createRouter({
   routes: [
