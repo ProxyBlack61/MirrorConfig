@@ -3,7 +3,7 @@
     <div class="row align-items-center">
       <div class="col">
         <strong class="mb-2">{{ $t(textString) }}</strong>
-        <p class="text-muted mb-0">
+        <p class="text-muted mb-0" style="white-space: pre-line">
           {{ $t(textString + "Detail") }}
         </p>
       </div>

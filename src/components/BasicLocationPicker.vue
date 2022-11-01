@@ -21,7 +21,9 @@
           </template>
         </GMapAutocomplete>
         <p class="mb-0 text">{{ $t("locationCurrent") }}</p>
-        <p class="text-muted mb-0">Lat: {{ latitude }} Long: {{ longitude }}</p>
+        <p class="text-muted mb-0">
+          {{ $t("lat") }}: {{ latitude }} {{ $t("lon") }}: {{ longitude }}
+        </p>
       </div>
     </div>
   </div>

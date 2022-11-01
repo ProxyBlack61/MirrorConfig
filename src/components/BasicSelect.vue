@@ -34,7 +34,7 @@ export default {
   name: "BasicSelect",
   props: {
     textString: String,
-    modelValue: String,
+    modelValue: [String, Number],
     disabled: Boolean,
     options: {
       type: Array,

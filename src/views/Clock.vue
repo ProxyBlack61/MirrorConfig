@@ -1,82 +1,82 @@
 <template>
   <div class="container-fluid">
-    <h1 class="display-4 text-center">{{ $t("clockHeader") }}</h1>
-    <basic-sub-heading textString="clockGeneralHeader" />
+    <h1 class="display-4 text-center">{{ $t("clock.Header") }}</h1>
+    <basic-sub-heading textString="clock.GeneralHeader" />
     <div class="list-group mb-5 shadow">
       <basic-toggle
-        textString="clockEnabled"
+        textString="clock.Enabled"
         v-model="moduleEnabled"
         :true-value="false"
         :false-value="true"
       />
 
       <basic-select
-        textString="clockPosition"
+        textString="clock.Position"
         v-model="clockParent.module.position"
         :options="positionOptions"
         :disabled="clockParent.module.disabled"
       />
 
       <basic-select
-        text-string="clockTimeFormat"
+        text-string="clock.TimeFormat"
         v-model="clockParent.module.config.timeFormat"
         :options="timeFormatOptions"
         :disabled="clockParent.module.disabled"
       />
 
       <basic-toggle
-        text-string="clockShowPeriod"
+        text-string="clock.ShowPeriod"
         v-model="clockParent.module.config.showPeriod"
         :disabled="
-          !clockParent.module.config.timeFormat.includes('12') ||
+          clockParent.module.config.timeFormat === 24 ||
           clockParent.module.disabled
         "
       />
       <basic-toggle
-        text-string="clockShowPeriodUpper"
+        text-string="clock.ShowPeriodUpper"
         v-model="clockParent.module.config.showPeriodUpper"
         :disabled="
           !clockParent.module.config.showPeriod === true ||
-          !clockParent.module.config.timeFormat.includes('12') ||
+          clockParent.module.config.timeFormat === 24 ||
           clockParent.module.disabled
         "
       />
 
       <basic-toggle
-        text-string="clockModernLook"
+        text-string="clock.ModernLook"
         v-model="clockParent.module.config.clockBold"
         :disabled="clockParent.module.disabled"
       />
     </div>
-    <basic-sub-heading textString="clockAdditionalHeader" />
+    <basic-sub-heading textString="clock.AdditionalHeader" />
     <div class="list-group mb-5 shadow">
       <basic-toggle
-        text-string="clockShowSecond"
+        text-string="clock.ShowSecond"
         v-model="clockParent.module.config.displaySeconds"
         :disabled="clockParent.module.disabled"
       />
       <basic-toggle
-        text-string="clockShowDate"
+        text-string="clock.ShowDate"
         v-model="clockParent.module.config.showDate"
         :disabled="clockParent.module.disabled"
       />
       <basic-toggle
-        text-string="clockShowWeek"
+        text-string="clock.ShowWeek"
         v-model="clockParent.module.config.showWeek"
         :disabled="clockParent.module.disabled"
       />
       <basic-toggle
-        text-string="clockShowSunTimes"
+        text-string="clock.ShowSunTimes"
         v-model="clockParent.module.config.showSunTimes"
         :disabled="clockParent.module.disabled"
       />
       <basic-toggle
-        text-string="clockShowMoonTimes"
+        text-string="clock.ShowMoonTimes"
         v-model="clockParent.module.config.showMoonTimes"
         :disabled="clockParent.module.disabled"
       />
       <BasicLocationPicker
-        text-string="clockLocation"
+        text-string="clock.Location"
         :latitude="clockParent.module.config.lat"
         @update:latitude="
           (newValue) => (clockParent.module.config.lat = newValue)
@@ -93,24 +93,25 @@
         "
       />
     </div>
-    <basic-sub-heading text-string="clockAnalogHeader" />
+    <basic-sub-heading text-string="clock.AnalogHeader" />
     <div class="list-group mb-5 shadow">
       <basic-select
-        text-string="clockDisplayType"
+        text-string="clock.DisplayType"
         v-model="clockParent.module.config.displayType"
         :options="displayTypeOptions"
         :disabled="clockParent.module.disabled"
       />
       <basic-color-picker
-        text-string="clockAnalogHandsColor"
+        text-string="clock.AnalogHandsColor"
         v-model="clockParent.module.config.secondsColor"
         :disabled="
           clockParent.module.config.displayType === 'digital' ||
-          clockParent.module.disabled
+          clockParent.module.disabled ||
+          !clockParent.module.config.displaySeconds
         "
       />
       <basic-select
-        text-string="clockAnalogFace"
+        text-string="clock.AnalogFace"
         v-model="clockParent.module.config.analogFace"
         :options="analogFaceOptions"
         :disabled="
@@ -119,7 +120,7 @@
         "
       />
       <basic-select
-        text-string="clockAnalogPlacement"
+        text-string="clock.AnalogPlacement"
         v-model="clockParent.module.config.analogPlacement"
         :options="analogPlacementOptions"
         :disabled="
@@ -175,7 +176,7 @@ export default {
           config: {
             showPeriod: true,
             showPeriodUpper: true,
-            timeFormat: "12",
+            timeFormat: 12,
             displaySeconds: true,
             showWeek: true,
             clockBold: true,
@@ -192,63 +193,67 @@ export default {
         },
       },
       displayTypeOptions: [
-        { id: 1, value: "digital", language: "clockDisplayTypeDigital" },
-        { id: 2, value: "analog", language: "clockDisplayTypeAnalog" },
-        { id: 3, value: "both", language: "clockDisplayTypeBoth" },
+        { id: 1, value: "digital", language: "clock.DisplayTypeDigital" },
+        { id: 2, value: "analog", language: "clock.DisplayTypeAnalog" },
+        { id: 3, value: "both", language: "clock.DisplayTypeBoth" },
       ],
       analogPlacementOptions: [
-        { id: 1, value: "top", language: "clockAnalogPlacementTop" },
-        { id: 2, value: "bottom", language: "clockAnalogPlacementBottom" },
-        { id: 3, value: "left", language: "clockAnalogPlacementLeft" },
-        { id: 4, value: "right", language: "clockAnalogPlacementRight" },
+        { id: 1, value: "top", language: "clock.AnalogPlacementTop" },
+        { id: 2, value: "bottom", language: "clock.AnalogPlacementBottom" },
+        { id: 3, value: "left", language: "clock.AnalogPlacementLeft" },
+        { id: 4, value: "right", language: "clock.AnalogPlacementRight" },
       ],
       analogFaceOptions: [
-        { id: 1, value: "simple", language: "clockAnalogFaceSimple" },
-        { id: 2, value: "none", language: "clockAnalogFaceNone" },
-        { id: 3, value: "face-001", language: "clockAnalogFace01" },
-        { id: 4, value: "face-002", language: "clockAnalogFace02" },
-        { id: 5, value: "face-003", language: "clockAnalogFace03" },
-        { id: 6, value: "face-004", language: "clockAnalogFace04" },
-        { id: 7, value: "face-005", language: "clockAnalogFace05" },
-        { id: 8, value: "face-006", language: "clockAnalogFace06" },
-        { id: 9, value: "face-007", language: "clockAnalogFace07" },
-        { id: 10, value: "face-008", language: "clockAnalogFace08" },
-        { id: 11, value: "face-009", language: "clockAnalogFace09" },
-        { id: 12, value: "face-010", language: "clockAnalogFace10" },
+        { id: 1, value: "simple", language: "clock.AnalogFaceSimple" },
+        { id: 2, value: "none", language: "clock.AnalogFaceNone" },
+        { id: 3, value: "face-001", language: "clock.AnalogFace01" },
+        { id: 4, value: "face-002", language: "clock.AnalogFace02" },
+        { id: 5, value: "face-003", language: "clock.AnalogFace03" },
+        { id: 6, value: "face-004", language: "clock.AnalogFace04" },
+        { id: 7, value: "face-005", language: "clock.AnalogFace05" },
+        { id: 8, value: "face-006", language: "clock.AnalogFace06" },
+        { id: 9, value: "face-007", language: "clock.AnalogFace07" },
+        { id: 10, value: "face-008", language: "clock.AnalogFace08" },
+        { id: 11, value: "face-009", language: "clock.AnalogFace09" },
+        { id: 12, value: "face-010", language: "clock.AnalogFace10" },
       ],
       timeFormatOptions: [
-        { id: 1, value: "12", language: "clockTimeFormat12" },
-        { id: 2, value: "24", language: "clockTimeFormat24" },
+        { id: 1, value: 12, language: "clock.TimeFormat12" },
+        { id: 2, value: 24, language: "clock.TimeFormat24" },
       ],
       positionOptions: [
-        { id: 1, value: "top_bar", language: "clockPositionTopBar" },
-        { id: 2, value: "top_left", language: "clockPositionTopLeft" },
-        { id: 3, value: "top_center", language: "clockPositionTopCenter" },
-        { id: 4, value: "top_right", language: "clockPositionTopRight" },
-        { id: 5, value: "upper_third", language: "clockPositionUpperThird" },
+        { id: 1, value: "top_bar", language: "clock.PositionTopBar" },
+        { id: 2, value: "top_left", language: "clock.PositionTopLeft" },
+        { id: 3, value: "top_center", language: "clock.PositionTopCenter" },
+        { id: 4, value: "top_right", language: "clock.PositionTopRight" },
+        { id: 5, value: "upper_third", language: "clock.PositionUpperThird" },
         {
           id: 6,
           value: "middle_center",
-          language: "clockPositionMiddleCenter",
+          language: "clock.PositionMiddleCenter",
         },
-        { id: 7, value: "lower_third", language: "clockPositionLowerThird" },
-        { id: 8, value: "bottom_left", language: "clockPositionBottomLeft" },
+        { id: 7, value: "lower_third", language: "clock.PositionLowerThird" },
+        { id: 8, value: "bottom_left", language: "clock.PositionBottomLeft" },
         {
           id: 9,
           value: "bottom_center",
-          language: "clockPositionBottomCenter",
+          language: "clock.PositionBottomCenter",
         },
-        { id: 10, value: "bottom_right", language: "clockPositionBottomRight" },
-        { id: 11, value: "bottom_bar", language: "clockPositionBottomBar" },
+        {
+          id: 10,
+          value: "bottom_right",
+          language: "clock.PositionBottomRight",
+        },
+        { id: 11, value: "bottom_bar", language: "clock.PositionBottomBar" },
         {
           id: 12,
           value: "fullscreen_above",
-          language: "clockPositionFullscreenAbove",
+          language: "clock.PositionFullscreenAbove",
         },
         {
           id: 13,
           value: "fullscreen_below",
-          language: "clockPositionFullscreenBelow",
+          language: "clock.PositionFullscreenBelow",
         },
       ],
     };
