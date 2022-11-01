@@ -92,6 +92,9 @@ const messages = {
     clockPositionBottomBar: "Bottom Bar",
     clockPositionFullscreenAbove: "Fullscreen Above",
     clockPositionFullscreenBelow: "Fullscreen Below",
+    snackbarSaved: "Settings saved!",
+    snackbarClose: "Close",
+    buttonSave: "Save",
   },
   Deutsch: {
     weatherMsg: "Wetter",
@@ -192,6 +195,9 @@ const messages = {
     clockPositionBottomBar: "Untere Leiste",
     clockPositionFullscreenAbove: "Vollbild Oben",
     clockPositionFullscreenBelow: "Vollbild Unten",
+    snackbarSaved: "Einstellungen gespeichert!",
+    snackbarClose: "Schließen",
+    buttonSave: "Speichern",
   },
 };
 
