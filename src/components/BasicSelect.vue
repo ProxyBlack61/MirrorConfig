@@ -8,7 +8,7 @@
         </p>
       </div>
       <div class="col-auto">
-        //TODO: Replace Boostrap select with Vuetify 3 Select when it's released
+        <!--       TODO: Replace Boostrap select with Vuetify 3 Select when it's released-->
         <select
           aria-label="Default select example"
           v-bind:id="textString"
