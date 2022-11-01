@@ -128,26 +128,20 @@
         "
       />
     </div>
-
-    <input
-      class="btn btn-primary"
-      type="submit"
-      value="Submit"
-      @click="saveClockSettings"
-    />
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <strong class="me-auto">Bootstrap</strong>
-        <small>11 mins ago</small>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="toast"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="toast-body">Hello, world! This is a toast message.</div>
+    <div class="row" style="padding-left: 15%; padding-right: 15%">
+      <v-btn size="x-large" color="indigo" @click="saveClockSettings">
+        {{ $t("buttonSave") }}
+      </v-btn>
     </div>
+
+    <v-snackbar v-model="snackbar" location="bottom right">
+      {{ $t("snackbarSaved") }}
+      <template v-slot:actions>
+        <v-btn color="pink" variant="text" @click="snackbar = false">
+          {{ $t("snackbarClose") }}
+        </v-btn>
+      </template>
+    </v-snackbar>
     <hr />
   </div>
 </template>
@@ -172,6 +166,7 @@ export default {
 
   data() {
     return {
+      snackbar: false,
       clockParent: {
         module: {
           disabled: false,
@@ -283,6 +278,10 @@ export default {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(this.clockParent),
+      }).then((response) => {
+        if (response.ok) {
+          this.snackbar = true;
+        }
       });
     },
   },
