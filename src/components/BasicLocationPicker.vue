@@ -10,11 +10,13 @@
       <div class="col-auto">
         <GMapAutocomplete @place_changed="setPlace">
           <template #input="slotProps">
-            <input
+            <v-text-field
               v-bind="slotProps"
               ref="input"
               prepend-inner-icon="mdi-map-marker"
               hide-details
+              color="indigo"
+              :disabled="disabled"
             />
           </template>
         </GMapAutocomplete>

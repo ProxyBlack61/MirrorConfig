@@ -8,14 +8,16 @@
         </p>
       </div>
       <div class="col-auto">
-        <input
-          type="color"
-          class="form-control form-control-color"
-          title="Choose your color "
+        <v-color-picker
           v-bind:id="textString"
           v-model="value"
           :disabled="disabled"
-        />
+          elevation="0"
+          hide-canvas
+          show-swatches
+          mode="rgb"
+          swatches-max-height="75px"
+        ></v-color-picker>
       </div>
     </div>
   </div>

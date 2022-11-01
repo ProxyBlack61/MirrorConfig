@@ -259,7 +259,6 @@ export default {
     };
   },
   created() {
-    console.log("Clock created");
     fetch("http://127.0.0.1:3000/clockSettings", {
       method: "GET",
       mode: "cors",
@@ -269,7 +268,6 @@ export default {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (Object.keys(data.module).length !== 0) {
           this.clockParent.module = data.module;
         }

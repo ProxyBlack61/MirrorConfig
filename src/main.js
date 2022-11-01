@@ -6,6 +6,10 @@ import "bootstrap";
 import i18n from "./plugins/i18n";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import VueGoogleMaps from "vue-google-maps-community-fork";
+import vuetify from "./plugins/vuetify";
+import { loadFonts } from "./plugins/webfontloader";
+
+loadFonts();
 
 createApp(App)
   .use(router)
@@ -16,4 +20,5 @@ createApp(App)
       libraries: "places",
     },
   })
+  .use(vuetify)
   .mount("#app");

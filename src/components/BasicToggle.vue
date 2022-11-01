@@ -8,16 +8,12 @@
         </p>
       </div>
       <div class="col-auto">
-        <div class="custom-control form-switch">
-          <input
-            type="checkbox"
-            class="form-check-input"
-            v-bind:id="textString"
-            v-model="value"
-            :disabled="disabled"
-          />
-          <span class="form-check-label"></span>
-        </div>
+        <v-switch
+          v-bind:id="textString"
+          v-model="value"
+          :disabled="disabled"
+          color="indigo"
+        ></v-switch>
       </div>
     </div>
   </div>
