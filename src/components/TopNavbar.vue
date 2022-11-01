@@ -1,5 +1,7 @@
 <template>
-  <nav class="navbar navbar-default navbar-dark navbar-static-top bg-dark">
+  <nav
+    class="navbar navbar-default navbar-dark fixed-top navbar-static-top bg-dark"
+  >
     <div class="container-fluid">
       <a class="navbar-brand" href="#">SmartMirror Config</a>
       <button

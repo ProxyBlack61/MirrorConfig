@@ -4,7 +4,9 @@
       <div>
         <top-navbar />
       </div>
-      <router-view />
+      <div style="padding-top: 56px">
+        <router-view />
+      </div>
     </v-main>
   </v-app>
 </template>
