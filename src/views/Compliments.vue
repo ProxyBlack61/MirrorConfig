@@ -1,5 +1,6 @@
 <template>
   <h1>Compliments</h1>
+  <!-- TODO: Implement Compliments.vue -->
 </template>
 
 <script>

@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: Replace Boostrap 5 completely with Vuetify 3 when it gets out of BETA -->
   <div class="container-fluid">
     <h1 class="display-4 text-center">{{ $t("clockHeader") }}</h1>
     <basic-sub-heading textString="clockGeneralHeader" />

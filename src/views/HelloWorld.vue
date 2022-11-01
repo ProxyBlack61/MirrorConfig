@@ -1,5 +1,6 @@
 <template>
   <h1>hello world</h1>
+  <!-- TODO: Implement HelloWorld.vue -->
 </template>
 
 <script>

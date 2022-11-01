@@ -1,6 +1,8 @@
 <template>
   <v-app>
     <v-main>
+      <!-- TODO: Replace Boostrap 5 completely with Vuetify 3 when it gets out of BETA -->
+
       <div>
         <top-navbar />
       </div>

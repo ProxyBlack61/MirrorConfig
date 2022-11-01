@@ -1,5 +1,6 @@
 <template>
   <h1>Weather</h1>
+  <!-- TODO: Implement Weather.vue -->
 </template>
 
 <script>

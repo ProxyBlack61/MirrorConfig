@@ -1,5 +1,6 @@
 <template>
   <h1>Newsfeed</h1>
+  <!-- TODO: Implement Newsfeed.vue -->
 </template>
 
 <script>
