@@ -1,66 +1,95 @@
 <template>
   <div class="container-fluid">
     <h1 class="display-4 text-center">{{ $t("clockHeader") }}</h1>
-    <hr style="width: 40%" class="text-center mx-auto" />
     <basic-sub-heading textString="clockGeneralHeader" />
     <div class="list-group mb-5 shadow">
+      <basic-toggle
+        textString="clockEnabled"
+        v-model="moduleEnabled"
+        :true-value="false"
+        :false-value="true"
+      />
+
+      <basic-select
+        textString="clockPosition"
+        v-model="clockParent.module.position"
+        :options="positionOptions"
+        :disabled="clockParent.module.disabled"
+      />
+
       <basic-select
         text-string="clockTimeFormat"
-        v-model="clockSettings.timeFormat"
+        v-model="clockParent.module.config.timeFormat"
         :options="timeFormatOptions"
+        :disabled="clockParent.module.disabled"
       />
+
       <basic-toggle
         text-string="clockShowPeriod"
-        v-model="clockSettings.showPeriod"
-        :disabled="!clockSettings.timeFormat.includes('12')"
+        v-model="clockParent.module.config.showPeriod"
+        :disabled="
+          !clockParent.module.config.timeFormat.includes('12') ||
+          clockParent.module.disabled
+        "
       />
       <basic-toggle
         text-string="clockShowPeriodUpper"
-        v-model="clockSettings.showPeriodUpper"
+        v-model="clockParent.module.config.showPeriodUpper"
         :disabled="
-          !clockSettings.showPeriod === true ||
-          !clockSettings.timeFormat.includes('12')
+          !clockParent.module.config.showPeriod === true ||
+          !clockParent.module.config.timeFormat.includes('12') ||
+          clockParent.module.disabled
         "
       />
 
       <basic-toggle
         text-string="clockModernLook"
-        v-model="clockSettings.clockBold"
+        v-model="clockParent.module.config.clockBold"
+        :disabled="clockParent.module.disabled"
       />
     </div>
     <basic-sub-heading textString="clockAdditionalHeader" />
     <div class="list-group mb-5 shadow">
       <basic-toggle
         text-string="clockShowSecond"
-        v-model="clockSettings.displaySeconds"
+        v-model="clockParent.module.config.displaySeconds"
+        :disabled="clockParent.module.disabled"
       />
       <basic-toggle
         text-string="clockShowDate"
-        v-model="clockSettings.showDate"
+        v-model="clockParent.module.config.showDate"
+        :disabled="clockParent.module.disabled"
       />
       <basic-toggle
         text-string="clockShowWeek"
-        v-model="clockSettings.showWeek"
+        v-model="clockParent.module.config.showWeek"
+        :disabled="clockParent.module.disabled"
       />
       <basic-toggle
         text-string="clockShowSunTimes"
-        v-model="clockSettings.showSunTimes"
+        v-model="clockParent.module.config.showSunTimes"
+        :disabled="clockParent.module.disabled"
       />
       <basic-toggle
         text-string="clockShowMoonTimes"
-        v-model="clockSettings.showMoonTimes"
+        v-model="clockParent.module.config.showMoonTimes"
+        :disabled="clockParent.module.disabled"
       />
       <BasicLocationPicker
         text-string="clockLocation"
-        :latitude="clockSettings.lat"
-        @update:latitude="(newValue) => (clockSettings.lat = newValue)"
-        :longitude="clockSettings.lon"
-        @update:longitude="(newValue) => (clockSettings.lon = newValue)"
+        :latitude="clockParent.module.config.lat"
+        @update:latitude="
+          (newValue) => (clockParent.module.config.lat = newValue)
+        "
+        :longitude="clockParent.module.config.lon"
+        @update:longitude="
+          (newValue) => (clockParent.module.config.lon = newValue)
+        "
         :disabled="
           !(
-            clockSettings.showMoonTimes === true ||
-            clockSettings.showSunTimes === true
-          )
+            clockParent.module.config.showMoonTimes === true ||
+            clockParent.module.config.showSunTimes === true
+          ) || clockParent.module.disabled
         "
       />
     </div>
@@ -68,25 +97,35 @@
     <div class="list-group mb-5 shadow">
       <basic-select
         text-string="clockDisplayType"
-        v-model="clockSettings.displayType"
+        v-model="clockParent.module.config.displayType"
         :options="displayTypeOptions"
+        :disabled="clockParent.module.disabled"
       />
       <basic-color-picker
         text-string="clockAnalogHandsColor"
-        v-model="clockSettings.secondsColor"
-        :disabled="clockSettings.displayType === 'digital'"
+        v-model="clockParent.module.config.secondsColor"
+        :disabled="
+          clockParent.module.config.displayType === 'digital' ||
+          clockParent.module.disabled
+        "
       />
       <basic-select
         text-string="clockAnalogFace"
-        v-model="clockSettings.analogFace"
+        v-model="clockParent.module.config.analogFace"
         :options="analogFaceOptions"
-        :disabled="clockSettings.displayType === 'digital'"
+        :disabled="
+          clockParent.module.config.displayType === 'digital' ||
+          clockParent.module.disabled
+        "
       />
       <basic-select
         text-string="clockAnalogPlacement"
-        v-model="clockSettings.analogPlacement"
+        v-model="clockParent.module.config.analogPlacement"
         :options="analogPlacementOptions"
-        :disabled="clockSettings.displayType !== 'both'"
+        :disabled="
+          clockParent.module.config.displayType !== 'both' ||
+          clockParent.module.disabled
+        "
       />
     </div>
 
@@ -96,8 +135,20 @@
       value="Submit"
       @click="saveClockSettings"
     />
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Bootstrap</strong>
+        <small>11 mins ago</small>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="toast-body">Hello, world! This is a toast message.</div>
+    </div>
     <hr />
-    {{ clockSettings }}
   </div>
 </template>
 
@@ -121,22 +172,29 @@ export default {
 
   data() {
     return {
-      clockSettings: {
-        showPeriod: true,
-        showPeriodUpper: true,
-        timeFormat: true,
-        displaySeconds: true,
-        showWeek: true,
-        clockBold: true,
-        showSunTimes: true,
-        showDate: true,
-        showMoonTimes: true,
-        displayType: "digital",
-        analogPlacement: "top",
-        secondsColor: "#ffffff",
-        analogFace: "simple",
-        lat: 0,
-        lon: 0,
+      clockParent: {
+        module: {
+          disabled: false,
+          module: "clock",
+          position: "top_left",
+          config: {
+            showPeriod: true,
+            showPeriodUpper: true,
+            timeFormat: "12",
+            displaySeconds: true,
+            showWeek: true,
+            clockBold: true,
+            showSunTimes: true,
+            showDate: true,
+            showMoonTimes: true,
+            displayType: "digital",
+            analogPlacement: "top",
+            secondsColor: "#ffffff",
+            analogFace: "simple",
+            lat: 0,
+            lon: 0,
+          },
+        },
       },
       displayTypeOptions: [
         { id: 1, value: "digital", language: "clockDisplayTypeDigital" },
@@ -167,13 +225,41 @@ export default {
         { id: 1, value: "12", language: "clockTimeFormat12" },
         { id: 2, value: "24", language: "clockTimeFormat24" },
       ],
-      center: {
-        lat: 40.73061,
-        lng: -73.935242,
-      },
+      positionOptions: [
+        { id: 1, value: "top_bar", language: "clockPositionTopBar" },
+        { id: 2, value: "top_left", language: "clockPositionTopLeft" },
+        { id: 3, value: "top_center", language: "clockPositionTopCenter" },
+        { id: 4, value: "top_right", language: "clockPositionTopRight" },
+        { id: 5, value: "upper_third", language: "clockPositionUpperThird" },
+        {
+          id: 6,
+          value: "middle_center",
+          language: "clockPositionMiddleCenter",
+        },
+        { id: 7, value: "lower_third", language: "clockPositionLowerThird" },
+        { id: 8, value: "bottom_left", language: "clockPositionBottomLeft" },
+        {
+          id: 9,
+          value: "bottom_center",
+          language: "clockPositionBottomCenter",
+        },
+        { id: 10, value: "bottom_right", language: "clockPositionBottomRight" },
+        { id: 11, value: "bottom_bar", language: "clockPositionBottomBar" },
+        {
+          id: 12,
+          value: "fullscreen_above",
+          language: "clockPositionFullscreenAbove",
+        },
+        {
+          id: 13,
+          value: "fullscreen_below",
+          language: "clockPositionFullscreenBelow",
+        },
+      ],
     };
   },
   created() {
+    console.log("Clock created");
     fetch("http://127.0.0.1:3000/clockSettings", {
       method: "GET",
       mode: "cors",
@@ -183,28 +269,33 @@ export default {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (Object.keys(data).length !== 0) {
-          this.clockSettings = data.clockSettings;
+        console.log(data);
+        if (Object.keys(data.module).length !== 0) {
+          this.clockParent.module = data.module;
         }
       });
   },
   methods: {
     saveClockSettings() {
+      console.log(this.clockParent);
       fetch("http://127.0.0.1:3000/clockSettings", {
         method: "POST",
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(this.clockSettings),
+        body: JSON.stringify(this.clockParent),
       });
     },
-    getPosition() {
-      navigator.geolocation.getCurrentPosition((position) => {
-        console.log("TEST");
-        this.clockSettings.lat = position.coords.latitude;
-        this.clockSettings.lon = position.coords.longitude;
-      });
+  },
+  computed: {
+    moduleEnabled: {
+      get() {
+        return !this.clockParent.module.disabled;
+      },
+      set(value) {
+        this.clockParent.module.disabled = !value;
+      },
     },
   },
 };
