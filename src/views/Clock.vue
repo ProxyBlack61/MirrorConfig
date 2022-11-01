@@ -11,7 +11,7 @@
       />
 
       <basic-select
-        textString="clock.Position"
+        textString="Position"
         v-model="clockParent.module.position"
         :options="positionOptions"
         :disabled="clockParent.module.disabled"
@@ -222,38 +222,38 @@ export default {
         { id: 2, value: 24, language: "clock.TimeFormat24" },
       ],
       positionOptions: [
-        { id: 1, value: "top_bar", language: "clock.PositionTopBar" },
-        { id: 2, value: "top_left", language: "clock.PositionTopLeft" },
-        { id: 3, value: "top_center", language: "clock.PositionTopCenter" },
-        { id: 4, value: "top_right", language: "clock.PositionTopRight" },
-        { id: 5, value: "upper_third", language: "clock.PositionUpperThird" },
+        { id: 1, value: "top_bar", language: "PositionTopBar" },
+        { id: 2, value: "top_left", language: "PositionTopLeft" },
+        { id: 3, value: "top_center", language: "PositionTopCenter" },
+        { id: 4, value: "top_right", language: "PositionTopRight" },
+        { id: 5, value: "upper_third", language: "PositionUpperThird" },
         {
           id: 6,
           value: "middle_center",
-          language: "clock.PositionMiddleCenter",
+          language: "PositionMiddleCenter",
         },
-        { id: 7, value: "lower_third", language: "clock.PositionLowerThird" },
-        { id: 8, value: "bottom_left", language: "clock.PositionBottomLeft" },
+        { id: 7, value: "lower_third", language: "PositionLowerThird" },
+        { id: 8, value: "bottom_left", language: "PositionBottomLeft" },
         {
           id: 9,
           value: "bottom_center",
-          language: "clock.PositionBottomCenter",
+          language: "PositionBottomCenter",
         },
         {
           id: 10,
           value: "bottom_right",
-          language: "clock.PositionBottomRight",
+          language: "PositionBottomRight",
         },
-        { id: 11, value: "bottom_bar", language: "clock.PositionBottomBar" },
+        { id: 11, value: "bottom_bar", language: "PositionBottomBar" },
         {
           id: 12,
           value: "fullscreen_above",
-          language: "clock.PositionFullscreenAbove",
+          language: "PositionFullscreenAbove",
         },
         {
           id: 13,
           value: "fullscreen_below",
-          language: "clock.PositionFullscreenBelow",
+          language: "PositionFullscreenBelow",
         },
       ],
     };
@@ -275,7 +275,6 @@ export default {
   },
   methods: {
     saveClockSettings() {
-      console.log(this.clockParent);
       fetch("http://127.0.0.1:3000/clockSettings", {
         method: "POST",
         mode: "cors",
