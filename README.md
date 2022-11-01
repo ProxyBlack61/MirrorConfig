@@ -1,10 +1,7 @@
 # MirrorConfig
 
-This template should help get you started developing with Vue 3 in Vite.
+A Vue 3 project for configuring MagicMirror 2. This project is still in development and is not ready for production use.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
 ## Customize configuration
 
@@ -33,3 +30,8 @@ npm run build
 ```sh
 npm run lint
 ```
+
+## Screenshots
+
+![alt text](./docs/src/clockSettings.png "Clock Settings")
+
