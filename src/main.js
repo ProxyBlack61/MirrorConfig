@@ -16,7 +16,7 @@ createApp(App)
   .use(i18n)
   .use(VueGoogleMaps, {
     load: {
-      key: "AIzaSyBGBbrFcx0b-Nx59ieQIcOLGaU_PCLTBBo",
+      key: import.meta.env.VITE_GOOGLE_PLACES_API,
       libraries: "places",
     },
   })
