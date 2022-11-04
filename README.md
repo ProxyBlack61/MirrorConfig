@@ -18,6 +18,11 @@ The API which is used to save the config file for MagicMirror 2 is a NodeJs & Ex
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
+To add full functionality to this project you need to create a new local file <mark>.env.local</mark>   and add the following lines to it: 
+```sh
+VITE_GOOGLE_PLACES_API=<YOUR_GOOGLE_PLACES_API_KEY>
+```
+### Install NPM dependencies
 
 ```sh
 npm install
