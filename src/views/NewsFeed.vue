@@ -2,7 +2,7 @@
   <!-- TODO: Implement Newsfeed.vue -->
   <div class="container-fluid">
     <h1 class="display-4 text-center">{{ $t("newsFeed.header") }}</h1>
-    <basic-sub-heading textString="clock.GeneralHeader" />
+    <basic-sub-heading textString="newsFeed.GeneralHeader" />
 
     <div class="list-group mb-5 shadow">
       <basic-toggle
