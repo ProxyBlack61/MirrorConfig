@@ -106,6 +106,34 @@ const messages = {
       Enabled: "News Feed Module active",
       EnabledDetail: "If checked, the news feed module will be active",
     },
+    calendar: {
+      header: "Calendar Settings",
+      GeneralHeader: "General Calendar Settings",
+      GeneralHeaderDetail: "All Basic settings that control the calendar",
+      Enabled: "Calendar Module active",
+      EnabledDetail: "If checked, the news calendar will be active",
+    },
+    weather: {
+      header: "Weather Settings",
+      GeneralHeader: "General Weather Settings",
+      GeneralHeaderDetail: "All Basic settings that control the weather",
+      Enabled: "Weather Module active",
+      EnabledDetail: "If checked, the weather module will be active",
+    },
+    compliments: {
+      header: "Compliments Settings",
+      GeneralHeader: "General Compliments Settings",
+      GeneralHeaderDetail: "All Basic settings that control the compliments",
+      Enabled: "Compliments Module active",
+      EnabledDetail: "If checked, the compliments module will be active",
+    },
+    helloWorld: {
+      header: "Hello World Settings",
+      GeneralHeader: "General Hello World Settings",
+      GeneralHeaderDetail: "All Basic settings that control the hello world",
+      Enabled: "Hello World Module active",
+      EnabledDetail: "If checked, the hello world module will be active",
+    },
   },
   Deutsch: {
     clock: {
@@ -219,6 +247,38 @@ const messages = {
         "Alle Grundeinstellungen die die Nachrichten beeinflussen",
       Enabled: "Nachrichten aktivieren",
       EnabledDetail: "Wenn aktiviert, werden Nachrichten angezeigt",
+    },
+    calendar: {
+      header: "Kalender Einstellungen",
+      GeneralHeader: "Allgemeine Kalender Einstellungen",
+      GeneralHeaderDetail:
+        "Alle Grundeinstellungen die den Kalender beeinflussen",
+      Enabled: "Kalender aktivieren",
+      EnabledDetail: "Wenn aktiviert, wird der Kalender angezeigt",
+    },
+    weather: {
+      header: "Wetter Einstellungen",
+      GeneralHeader: "Allgemeine Wetter Einstellungen",
+      GeneralHeaderDetail:
+        "Alle Grundeinstellungen die das Wetter beeinflussen",
+      Enabled: "Wetter aktivieren",
+      EnabledDetail: "Wenn aktiviert, wird das Wetter angezeigt",
+    },
+    compliments: {
+      header: "Komplimente Einstellungen",
+      GeneralHeader: "Allgemeine Komplimente Einstellungen",
+      GeneralHeaderDetail:
+        "Alle Grundeinstellungen die die Komplimente beeinflussen",
+      Enabled: "Komplimente aktivieren",
+      EnabledDetail: "Wenn aktiviert, werden Komplimente angezeigt",
+    },
+    helloWorld: {
+      header: "Hallo Welt Einstellungen",
+      GeneralHeader: "Allgemeine Hallo Welt Einstellungen",
+      GeneralHeaderDetail:
+        "Alle Grundeinstellungen die das Hallo Welt Modul beeinflussen",
+      Enabled: "Hallo Welt aktivieren",
+      EnabledDetail: "Wenn aktiviert, wird das Hallo Welt Modul angezeigt",
     },
   },
 };
