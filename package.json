@@ -16,7 +16,7 @@
     "bootstrap-icons": "^1.9.1",
     "roboto-fontface": "*",
     "vue": "^3.2.38",
-    "vue-google-maps-community-fork": "^0.1.4",
+    "vue-google-maps-community-fork": "^0.3.0",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.5",
     "vuetify": "npm:@vuetify/nightly@next",
